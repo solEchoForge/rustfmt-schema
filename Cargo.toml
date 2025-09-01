@@ -31,5 +31,5 @@ name = "rustfmt-schema-cli"
 path = "src/bin/cli.rs"
 
 [lib]
-name = "rustfmt-schema"
+name = "rustfmt_schema"
 path = "src/lib.rs"
