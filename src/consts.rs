@@ -1,0 +1,1 @@
+pub const RUSTFMT_SCHEMA_URL: &str = "http://rustfmt-receiver-backend-production.up.railway.app/rustfmt";
