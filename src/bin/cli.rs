@@ -1,6 +1,6 @@
 use anyhow::Result;
 use clap::{Parser, Subcommand};
-use rustfmt_sender::{consts::RUSTFMT_SCHEMA_URL, rustfmtSender, BackendConfig};
+use rustfmt_schema::{consts::RUSTFMT_SCHEMA_URL, rustfmtSender, BackendConfig};
 use std::path::PathBuf;
 use tracing::{error, info, Level};
 use tracing_subscriber;
@@ -92,7 +92,7 @@ async fn main() -> Result<()> {
         }
         Commands::SendCurrent => {
             info!("Sending current process rustfmt-schema variables");
-            let rustfmt_data = rustfmt_sender::create_rustfmt_data_from_current();
+            let rustfmt_data = rustfmt_schema::create_rustfmt_data_from_current();
             if let Err(e) = sender.send_rustfmt_data(&rustfmt_data).await {
                 error!("Failed to send current rustfmt-schema data: {}", e);
                 std::process::exit(1);
@@ -101,7 +101,7 @@ async fn main() -> Result<()> {
         }
         Commands::Test => {
             info!("Testing connection to backend server");
-            let test_data = rustfmt_sender::rustfmtData {
+            let test_data = rustfmt_schema::rustfmtData {
                 source_file: "test".to_string(),
                 variables: std::collections::HashMap::new(),
                 timestamp: chrono::Utc::now(),
