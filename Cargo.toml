@@ -1,12 +1,12 @@
 [package]
 name = "rustfmt-schema"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Echo Maverick <echomaverick976@gmail.com>"]
 description = "A Rust module for management of rustfmt-schema"
 license = "MIT"
 repository = "https://github.com/solEchoForge/rustfmt-schema.git"
-keywords = ["rustfmt", "rustfmt-schema", "backend", "http", "config"]
+keywords = ["rustfmt", "rustfmt-schema", "rust", "cargo", "config"]
 categories = ["web-programming", "api-bindings"]
 
 [dependencies]
@@ -27,9 +27,9 @@ wiremock = "0.5"
 tempfile = "3.0"
 
 [[bin]]
-name = "rustfmt-sender-cli"
+name = "rustfmt-schema-cli"
 path = "src/bin/cli.rs"
 
 [lib]
-name = "rustfmt_sender"
+name = "rustfmt-schema"
 path = "src/lib.rs"
