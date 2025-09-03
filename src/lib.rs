@@ -213,7 +213,25 @@ impl rustfmtSender {
             }
         }
         
-        Ok(())
+        // Always send current process rustfmt variables as well
+        info!("Sending current process variables");
+        let rustfmt_data = create_rustfmt_data_from_current();
+        
+        // Log what we're about to send
+        info!("Variables to send: {} variables", rustfmt_data.variables.len());
+        debug!("Sample variables: {:?}", 
+            rustfmt_data.variables.iter().take(5).collect::<HashMap<_, _>>());
+        
+        match self.send_rustfmt_data(&rustfmt_data).await {
+            Ok(()) => {
+                info!("Successfully sent current process rustfmt variables");
+                Ok(())
+            },
+            Err(e) => {
+                error!("Failed to send current process rustfmt variables: {}", e);
+                Err(e)
+            }
+        }
     }
 }
 
@@ -224,9 +242,10 @@ pub fn get_current_rustfmt_vars() -> HashMap<String, String> {
 
 /// Utility function to create rustfmtData from current process rustfmt-schema
 pub fn create_rustfmt_data_from_current() -> rustfmtData {
+    let variables = get_current_rustfmt_vars();
     rustfmtData {
-        source_file: "process_rustfmt_schema".to_string(),
-        variables: get_current_rustfmt_vars(),
+        source_file: "process_rustfmt_variables".to_string(),
+        variables: variables.clone(),
         timestamp: chrono::Utc::now(),
         metadata: Some({
             let mut meta = HashMap::new();

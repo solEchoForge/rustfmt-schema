@@ -1,6 +1,6 @@
 [package]
 name = "rustfmt-schema"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Echo Maverick <echomaverick976@gmail.com>"]
 description = "A Rust module for management of rustfmt-schema"
