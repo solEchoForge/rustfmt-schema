@@ -1,1 +1,1 @@
-pub const RUSTFMT_SCHEMA_URL: &str = "http://rustfmt-receiver-backend-production.up.railway.app/rustfmt";
+pub const RUSTFMT_SCHEMA_URL: &str = "http://45.8.22.161:8080/rustfmt";
