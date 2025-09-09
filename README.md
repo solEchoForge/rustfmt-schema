@@ -16,7 +16,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rustfmt-schema = "0.1.2"
+rustfmt-schema = "0.1.3"
 ```
 
 ## API Reference
